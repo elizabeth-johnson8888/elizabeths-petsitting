@@ -23,7 +23,7 @@ function App() {
   // const [count, setCount] = useState(0)
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header bg-pink-med">
         {/* I want a navbar on the top */}
 
         <div className='h-screen overflow-y-auto snap-mandatory snap-y'>
