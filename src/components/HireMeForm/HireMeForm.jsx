@@ -49,6 +49,8 @@ function HireMeForm() {
   const [pets, setPets] = useState([
     { type: '', other: '', name:'', age:''}
   ]);
+
+  const [step, setStep] = useState(1);
   
   const handleServiceCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -91,6 +93,9 @@ function HireMeForm() {
     setPets(updated);
   };
 
+  const handleNext = () => setStep((prev) => prev + 1);
+  const handleBack = () => setStep((prev) => prev - 1);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -132,72 +137,112 @@ function HireMeForm() {
     sendClientEmail(templateParams);
   };
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg space-y-4">
-      <h2 className="text-xl font-bold">Want to hire me? Fill out my form!</h2>
-
-      {/* // get client information */}
-      <ClientName value={formData.owner_name} onChange={handleChange} />
-      <PhoneNumber value={formData.phone} onChange={handleChange} />
-      <Email value={formData.email} onChange={handleChange} />
-      <Address value={formData.address} onChange={handleChange} />
-
-      {/* services serction */}
-      <ServicesSelector selectedServices={formData.services} onChange={handleServiceCheckboxChange} />
-
-      {formData.services.includes('Drop-in') && (
-        <DropInDetails
-            label="Drop-In"
-            dateLabel="Drop-in Dates: "
-            timeLabel="Drop-in Times: "
-            data={formData.dropInDetails}
-            setData={(update) => setFormData((prev) => ({ ...prev, dropInDetails: update }))}
-            unavailableDates={unavailableDates}
-        />
-      )}
-
-      {formData.services.includes('Walk') && (
-        <DropInDetails
-            label="Walk"
-            dateLabel="Walk Dates: "
-            timeLabel="Walk Times: "
-            data={formData.walkDetails}
-            setData={(update) => setFormData(prev => ({ ...prev, walkDetails: update }))}
-            unavailableDates={unavailableDates}
-        />
-      )}
-
-      {formData.services.includes("House-sit") && (
-        <HouseSitDetails
-          label="House-Sit"
-          dateLabel="Houses-sit Dates: "
-          data={formData.houseSitDetails}
-          setData={(update) => setFormData(prev => ({...prev, houseSitDetails: update}))}
-          unavailableDates={unavailableDates}
-        />
-      )}
-
-      <PetFormSection
-        formData={formData}
-        handleChange={handleChange}
-        pets={pets}
-        handlePetTypeChange={handlePetTypeChange}
-        handleOtherTypeChange={handleOtherTypeChange}
-        handlePetNameChange={handlePetNameChange}
-        handlePetAgeChange={handlePetAgeChange}
-      />
-           
-      <div>
-        <label>Any additional notes I should know?</label>
-        <textarea
-          value={formData.additionalInfo}
-          onChange={(e) => setFormData(prev => ({ ...prev, additionalInfo: e.target.value}))}
-          rows={5}
-        />
+    <form onSubmit={handleSubmit} className="flex flex-col gap-16 sm:grid sm:grid-cols-[1fr_2fr] sm:grid-rows-1 sm:gap-8 ">
+      <div className='flex flex-col center-items justify-center sm:relative sm:-left-20'>
+        <h2 className="text-4xl font-bold text-center pb-2 sm:pb-8">Want to hire me?</h2>
+        <p className='regular-text text-center pb-8'> Fill out my form!</p>
       </div>
 
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Submit
-      </button>
+      <div>
+        {/* // get client information */}
+        { step === 1 && (
+          <div>
+            <h3 className="text-2xl font-bold pb-2 text-center">Your Information:</h3>
+            <ClientName value={formData.owner_name} onChange={handleChange} />
+            <PhoneNumber value={formData.phone} onChange={handleChange} />
+            <Email value={formData.email} onChange={handleChange} />
+            <Address value={formData.address} onChange={handleChange} />
+            <div className='flex justify-center'>
+              <button type="button" onClick={handleNext} className="button border-pink-xtra-dark rounded-full border-2">Next</button>
+            </div>
+          </div>
+        )}
+
+        {/* services serction */}
+        { step === 2 && (
+          <div>
+            <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
+            <ServicesSelector selectedServices={formData.services} onChange={handleServiceCheckboxChange} />
+
+            {formData.services.includes('Drop-in') && (
+              <DropInDetails
+                  label="Drop-In"
+                  dateLabel="Drop-in Dates: "
+                  timeLabel="Drop-in Times: "
+                  data={formData.dropInDetails}
+                  setData={(update) => setFormData((prev) => ({ ...prev, dropInDetails: update }))}
+                  unavailableDates={unavailableDates}
+              />
+            )}
+
+            {formData.services.includes('Walk') && (
+              <DropInDetails
+                  label="Walk"
+                  dateLabel="Walk Dates: "
+                  timeLabel="Walk Times: "
+                  data={formData.walkDetails}
+                  setData={(update) => setFormData(prev => ({ ...prev, walkDetails: update }))}
+                  unavailableDates={unavailableDates}
+              />
+            )}
+
+            {formData.services.includes("House-sit") && (
+              <HouseSitDetails
+                label="House-Sit"
+                dateLabel="Houses-sit Dates: "
+                data={formData.houseSitDetails}
+                setData={(update) => setFormData(prev => ({...prev, houseSitDetails: update}))}
+                unavailableDates={unavailableDates}
+              />
+            )}
+
+            <div className="flex justify-between mt-2">
+              <button type="button" onClick={handleBack} className='button border-pink-xtra-dark rounded-full border-2'>Back</button>
+              <button type="button" onClick={handleNext} className='button border-pink-xtra-dark rounded-full border-2'>Next</button>
+            </div>
+          </div>
+        )}
+
+        { step === 3 && (
+          <div>
+            <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
+            <PetFormSection
+              formData={formData}
+              handleChange={handleChange}
+              pets={pets}
+              handlePetTypeChange={handlePetTypeChange}
+              handleOtherTypeChange={handleOtherTypeChange}
+              handlePetNameChange={handlePetNameChange}
+              handlePetAgeChange={handlePetAgeChange}
+            />
+            <div className="flex justify-between mt-2">
+              <button type="button" onClick={handleBack} className='button border-pink-xtra-dark rounded-full border-2'>Back</button>
+              <button type="button" onClick={handleNext} className='button border-pink-xtra-dark rounded-full border-2'>Next</button>
+            </div>
+          </div>
+        )}
+
+        { step === 4 && (    
+          <div>
+            <div>
+              <h3 className="text-2xl font-bold pb-2 text-center mb-4">Additional Information:</h3>
+              <label className="regular-text font-bold mr-4">Any additional notes I should know?</label>
+              <textarea
+                value={formData.additionalInfo}
+                onChange={(e) => setFormData(prev => ({ ...prev, additionalInfo: e.target.value}))}
+                // rows={5}
+                className="border p-2 mb-4 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+              />
+            </div>
+            <div className="flex justify-between mt-2">
+              <button type="button" onClick={handleBack} className="button border-pink-xtra-dark rounded-full border-2">Back</button>
+              <button type="submit" className="button border-pink-xtra-dark rounded-full border-2">
+                Submit
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </form>
   );
 }

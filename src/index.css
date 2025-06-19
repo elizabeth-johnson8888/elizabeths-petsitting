@@ -1,17 +1,45 @@
 @import "tailwindcss";
 
-@theme {
-  --color-pink-med: oklch(94.8% 0.028 342.258); 
+@theme static {
+  --color-pink-light: oklch(97.1% 0.014 343.198);
+  --color-pink-med: oklch(94.8% 0.028 342.258);
+  --color-pink-dark: oklch(89.9% 0.061 343.231); 
+  --color-pink-xtra-dark: oklch(82.3% 0.12 346.018);
 }
 
-@theme {
-  --color-pink-dark: oklch(89.9% 0.061 343.231);
-}
+/* @theme base {
+  label {
+    font-weight: bold;
+  }
+} */
 
-@theme {
-  --color-pink-dark: oklch(89.9% 0.061 343.231);
+.form-input {
+  @apply border p-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light;
 }
 
 .button {
-  @apply p-2 m-2 bg-pink-dark;
+  @apply p-3 pl-4 pr-4 bg-pink-dark border-2 font-bold;
 }
+
+.section-header {
+  @apply text-4xl font-bold pb-8;
+}
+
+.regular-text {
+  @apply text-lg;
+}
+
+@theme {
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+}
+
+

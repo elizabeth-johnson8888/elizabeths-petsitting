@@ -19,10 +19,14 @@ import ReviewForm from './components/Reviews/ReviewForm.jsx';
 import AboutMeSection from './components/UserProfile/AboutMeSection.jsx';
 
 
+import StaggeredTextToggle from './test.jsx'
+
 function App() {
   // const [count, setCount] = useState(0)
   return (
     <div className="App">
+
+      {/* <StaggeredTextToggle /> */}
       <header className="App-header bg-pink-med">
         {/* I want a navbar on the top */}
 

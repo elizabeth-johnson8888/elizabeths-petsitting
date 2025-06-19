@@ -26,9 +26,9 @@ function HouseSitDetails ({ data, setData, unavailableDates, dateLabel, label })
 
     return (
         <div>
-            <h4>{label}</h4>
-            <div>
-                <label>{dateLabel}</label>
+            {/* <h4>{label}</h4> */}
+            <div className="mb-2">
+                <label className="regular-text font-bold mr-4">{dateLabel}</label>
                 <Calendar 
                 value={data.dates} 
                 onChange={(e) => {
@@ -53,20 +53,22 @@ function HouseSitDetails ({ data, setData, unavailableDates, dateLabel, label })
             </div>
             
             <div>
-                <label>Approximate Start time: </label>
+                <label className="regular-text font-bold mr-4">Approximate Start time: </label>
                 <input 
                     type="time"
                     value={data.startTime || ''}
                     onChange={(e) => setData({ ...data, startTime: e.target.value })}
+                    className="border p-2 mb-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 />
             </div>
 
             <div>
-                <label>Approximate End time: </label>
+                <label className="regular-text font-bold mr-4">Approximate End time: </label>
                 <input 
                     type="time"
                     value={data.endTime || ''}
                     onChange={(e) => setData({ ...data, endTime: e.target.value })}
+                    className="border p-2 mb-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 />
             </div>
         </div>

@@ -3,7 +3,7 @@ import PetDetails from './PetDetails.jsx';
 
 function PetFormSection({ formData, handleChange, pets, handlePetTypeChange, handleOtherTypeChange, handlePetNameChange, handlePetAgeChange }) {
   return (
-    <>
+    <div>
       <PetsCountInput value={formData.pets_num} onChange={handleChange} />
 
       {pets.map((pet, index) => (
@@ -17,7 +17,7 @@ function PetFormSection({ formData, handleChange, pets, handlePetTypeChange, han
           onAgeChange={handlePetAgeChange}
         />
       ))}
-    </>
+    </div>
   );
 }
 

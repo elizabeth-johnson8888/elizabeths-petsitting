@@ -1,14 +1,14 @@
 function Address ({ value, onChange }) {
     return (
         <div>
-            <label className="block text-sm font-medium">Address:</label>
+            <label className="regular-text font-bold mb-2">Address:</label>
             <input
             type="text"
             name="address"
             value={value}
             onChange={onChange}
             required
-            className="w-full border rounded p-2"
+            className="w-full mb-4 form-input"
             />
         </div>
     );

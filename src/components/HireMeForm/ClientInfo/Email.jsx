@@ -1,14 +1,14 @@
 function Email ({ value, onChange }) {
     return (
         <div>
-            <label className="block text-sm font-medium">Email:</label>
+            <label className="regular-text font-bold mb-2">Email:</label>
             <input
             type="text"
             name="email"
             value={value}
             onChange={onChange}
             required
-            className="w-full border rounded p-2"
+            className="mb-2 w-full form-input"
             />
         </div>
     );

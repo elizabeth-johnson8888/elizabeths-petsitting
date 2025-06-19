@@ -34,43 +34,43 @@ const ReviewForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg space-y-4">
-        <h2 className="text-xl font-bold">Submit a Review</h2>
+    <form onSubmit={handleSubmit} className="flex flex-col items-center">
+        <h2 className="section-header">Submit a Review</h2>
 
-        <div>
-            <label className="block mb-2">Code:</label>
+        <div className="">
+            <label className="regular-text font-bold mr-4">Code:</label>
             <input
                 type="text"
                 value={formData.code}
                 onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                className="border p-2 mb-4 w-full"
+                className="border p-2 mb-2 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 required
             />
         </div>
 
-        <div>
-            <label className="block mb-2">Name:</label>
+        <div className="">
+            <label className="regular-text font-bold mr-4">Name:</label>
             <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="border p-2 mb-4 w-full"
+                className="border p-2 mb-2 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 required
             />
         </div>
         
-        <div>
-            <label className="block mb-2">Review:</label>
+        <div className="">
+            <label className="regular-text font-bold mr-4">Review:</label>
             <textarea
                 value={formData.review}
                 onChange={(e) => setFormData({ ...formData, review: e.target.value })}
-                className="border p-2 mb-4 w-full"
+                className="border p-2 mb-2 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 required
             />
         </div>
 
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-            Submit Review
+        <button type="submit" className="button border-pink-xtra-dark rounded-full border-2">
+            Submit
         </button>
         </form>
     );

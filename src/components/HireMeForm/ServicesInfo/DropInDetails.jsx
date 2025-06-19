@@ -44,9 +44,9 @@ function DropInDetails ({ data, setData, unavailableDates, dateLabel, timeLabel,
 
     return (
         <div>
-            <h4>{label}</h4>
-            <div>
-                <label>{dateLabel}</label>
+            {/* <h4>{label}</h4> */}
+            <div className="mb-2">
+                <label className="regular-text font-bold mr-4">{dateLabel}</label>
                 <Calendar 
                 value={data.dates} 
                 onChange={(e) => {
@@ -68,29 +68,32 @@ function DropInDetails ({ data, setData, unavailableDates, dateLabel, timeLabel,
                 minDate={sixDaysFromNow}
                 maxDate={threeMonthsFromToday}
                 disabledDates={unavailableDates}
+                // className="border p-2 mb-4 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 />
             </div>
 
             {/* Visits per day count */}
-            <div>
-                <label>{"How many times per day?"}</label>
+            <div className="mb-2">
+                <label className="regular-text font-bold mr-4">{"How many times per day?"}</label>
                 <input
                     type="number"
                     min="1"
                     value={data.visitsPerDay || ''}
                     onChange={handleCountChange}
+                    className="border p-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 />
             </div>
 
             {/* Time inputs */}
             {Array.isArray(data.times) &&
                 data.times.map((time, index) => (
-                <div key={index}>
-                    <label>Approximate Time #{index + 1}</label>
+                <div key={index} className="mb-2">
+                    <label className="regular-text font-bold mr-4">Approximate Time #{index + 1}</label>
                     <input
                         type="time"
                         value={time}
                         onChange={(e) => handleTimeChange(index, e.target.value)}
+                        className="border p-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                     />
                 </div>
             ))}

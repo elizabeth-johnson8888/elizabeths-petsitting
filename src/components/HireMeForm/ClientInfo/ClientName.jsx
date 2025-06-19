@@ -1,14 +1,14 @@
 function ClientName ({ value, onChange }) {
     return (
         <div>
-            <label className="block text-sm font-medium">Name:</label>
+            <label className="regular-text font-bold mb-2">Name:</label>
             <input
             type="text"
             name="owner_name"
             value={value}
             onChange={onChange}
             required
-            className="w-full border rounded p-2"
+            className="mb-2 w-full form-input"
             />
         </div>
     );

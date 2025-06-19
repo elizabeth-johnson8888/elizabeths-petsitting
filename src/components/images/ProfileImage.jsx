@@ -3,7 +3,7 @@ import profImage from '../../assets/EJ_Emily_Bartell_Photography-22.jpg'
 // Shows my profile image
 function ProfileImage() {
   return (
-    <img src={profImage} alt="My Picture" className='w-60 mr-16 col-span-1'/>
+    <img src={profImage} alt="My Picture" className='w-60 border-4 border-pink-xtra-dark rounded-lg max-w-full mx-auto hidden sm:block'/>
     // <img
     //   src="EJ_Emily_Bartell_Photography-22.jpg"
     //   alt="Elizabeth Johnson"

@@ -21,17 +21,19 @@ function ImageCarousel() {
     };
 
     return (
-        <div>
-        <h3>Animals and I</h3>
-        <img
-            src={images[currentIndex][0]}
-            alt={`Slide ${currentIndex + 1}`}
-            className="Image-Carosel"
-        />
-        <p>{images[currentIndex][1]}</p>
+        <div className="flex flex-col items-center">
+            <h3 className="section-header text-center">Animals and I</h3>
+            <img
+                src={images[currentIndex][0]}
+                alt={`Slide ${currentIndex + 1}`}
+                className=""
+            />
+            <p className="regular-text text-center">{images[currentIndex][1]}</p>
 
-        <button onClick={goToPrevious}>◀</button>
-        <button onClick={goToNext}>▶</button>
+            <div className="">
+                <button onClick={goToPrevious} className="bg-pink-dark border-2 border-pink-xtra-dark rounded-full w-16 m-4">◀</button>
+                <button onClick={goToNext} className="bg-pink-dark border-2 border-pink-xtra-dark rounded-full w-16 m-4">▶</button>
+            </div>
         </div>
     );
 }
