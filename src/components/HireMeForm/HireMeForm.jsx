@@ -140,10 +140,10 @@ function HireMeForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-16 sm:grid sm:grid-cols-[1fr_2fr] sm:grid-rows-1 sm:gap-8 ">
       <div className='flex flex-col center-items justify-center sm:relative sm:-left-20'>
         <h2 className="text-4xl font-bold text-center pb-2 sm:pb-8">Want to hire me?</h2>
-        <p className='regular-text text-center pb-8'> Fill out my form!</p>
+        <p className='regular-text text-center sm:pb-8'> Fill out my form!</p>
       </div>
 
-      <div>
+      <div className='pl-5 pr-5 sm:p-0'>
         {/* // get client information */}
         { step === 1 && (
           <div>
@@ -160,7 +160,7 @@ function HireMeForm() {
 
         {/* services serction */}
         { step === 2 && (
-          <div>
+          <div className=''>
             <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
             <ServicesSelector selectedServices={formData.services} onChange={handleServiceCheckboxChange} />
 

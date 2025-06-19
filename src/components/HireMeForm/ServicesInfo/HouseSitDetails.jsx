@@ -25,7 +25,7 @@ function HouseSitDetails ({ data, setData, unavailableDates, dateLabel, label })
     }
 
     return (
-        <div>
+        <div className="flex flex-col items-center text-center">
             {/* <h4>{label}</h4> */}
             <div className="mb-2">
                 <label className="regular-text font-bold mr-4">{dateLabel}</label>

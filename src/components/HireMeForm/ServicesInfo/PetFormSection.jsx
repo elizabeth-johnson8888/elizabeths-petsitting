@@ -3,7 +3,7 @@ import PetDetails from './PetDetails.jsx';
 
 function PetFormSection({ formData, handleChange, pets, handlePetTypeChange, handleOtherTypeChange, handlePetNameChange, handlePetAgeChange }) {
   return (
-    <div>
+    <div className='flex flex-col items-center text-center'>
       <PetsCountInput value={formData.pets_num} onChange={handleChange} />
 
       {pets.map((pet, index) => (

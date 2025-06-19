@@ -13,14 +13,15 @@ function MoreAboutMeText({ isActive, text }) {
   };
 
   return (
-    <div className="absolute mt-30 w-156 z-10 left-0">
+    <div className="z-10 ">
       <AnimatePresence>
         {isActive && (
           <motion.div
-            className="flex flex-wrap"
+            className="flex flex-wrap m-5"
             initial="hidden"
             animate="visible"
             exit="exit"
+            layout
             variants={{
               visible: {
                 transition: {

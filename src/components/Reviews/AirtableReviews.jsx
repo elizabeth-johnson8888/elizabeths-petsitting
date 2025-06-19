@@ -11,11 +11,11 @@ function AirtableReviews() {
   }, []);
 
   return (
-    <section>
-      <h2 className='section-header'>Client Reviews</h2>
-      <ul>
+    <section className='flex flex-col items-center justify-center'>
+      <h2 className='text-4xl font-bold text-center mb-4 sm:mb-0'>Client Reviews</h2>
+      <ul className='w-full p-10'>
         {reviews.map((r, i) => (
-          <li key={i} className='regular-text'><strong>{r.name}</strong>: {r.review}</li>
+          <li key={i} className='regular-text mb-2'><strong>{r.name}</strong>: {r.review}</li>
         ))}
       </ul>
     </section>

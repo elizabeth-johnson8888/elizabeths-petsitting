@@ -6,14 +6,14 @@ function ServicesSelector ({ selectedServices, onChange }) {
             {/* <label className="regular-text font-bold mb-2">What service(s) would you like me to provide?</label> */}
             <div>
             {services.map(service => (
-                <label key={service} className="regular-text font-bold mr-4 ml-4">
+                <label key={service} className="regular-text font-bold mr-2 sm:mr-4 sm:ml-4">
                     <input
                         type="checkbox"
                         id="custom-textbox"
                         value={service}
                         checked={selectedServices.includes(service)}
                         onChange={onChange}
-                        className="w-5 h-5 appearance-none mr-4 rounded border border-pink-xtra-dark border-2 bg-pink-light checked:bg-pink-600"
+                        className="w-5 h-5 appearance-none mr-1 sm:mr-4 rounded border border-pink-xtra-dark border-2 bg-pink-light checked:bg-pink-600"
                         // checked:bg-pink-600
                     />
                     

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function ExperienceButton({ isActive, onToggle }) {
   return (
-    <div className='flex flex-col items-start'>
+    <div className='flex flex-col items-center text-center'>
       <button className="button border-pink-xtra-dark rounded-full w-48" onClick={onToggle}>
         Experience
       </button>
