@@ -19,6 +19,30 @@ import { sendRequestEmail, sendClientEmail } from '../../util/emailjs/SendEmails
 // Get number of pets, pet types, and names, age
 // add captcha to form
 function HireMeForm() {
+  const initialFormData = {
+    owner_name: '',
+    phone: '',
+    email: '',
+    address: '',
+    pets_num: '1',
+    services: [],
+    dropInDetails: {
+      dates: '',
+      visitsPerDay: '',
+      times: ['']
+    },
+    walkDetails: {
+      dates: '',
+      walksPerDay: '',
+      times: ['']
+    },
+    houseSitDetails: {
+      dates: '',
+      startTime: '',
+      endTime: ''
+    },
+    additionalInfo: '',
+  }; 
   const [formData, setFormData] = useState({
     owner_name: '',
     phone: '',
@@ -135,6 +159,9 @@ function HireMeForm() {
     const templateParams = formatEmail(formData, petList);
     sendRequestEmail(templateParams);
     sendClientEmail(templateParams);
+
+    // alert("Your form has been submitted successfully! You'll receive an email confirming your petsitting request, and an additional form for more specific information. I look forward to meeting you!");
+    // setFormData(initialFormData);
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-16 sm:grid sm:grid-cols-[1fr_2fr] sm:grid-rows-1 sm:gap-8 ">
@@ -164,6 +191,7 @@ function HireMeForm() {
             <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
             <ServicesSelector selectedServices={formData.services} onChange={handleServiceCheckboxChange} />
 
+            <div className={`${formData.services.length > 1 ? 'h-56 max-w-xl overflow-y-scroll snap-none scrollable-area' : ''} px-2`}>
             {formData.services.includes('Drop-in') && (
               <DropInDetails
                   label="Drop-In"
@@ -195,6 +223,7 @@ function HireMeForm() {
                 unavailableDates={unavailableDates}
               />
             )}
+            </div>
 
             <div className="flex justify-between mt-2">
               <button type="button" onClick={handleBack} className='button border-pink-xtra-dark rounded-full border-2'>Back</button>

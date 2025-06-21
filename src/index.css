@@ -42,4 +42,7 @@
   }
 }
 
+.scrollable-area {
+  @apply border p-2 border-pink-xtra-dark rounded-4xl border-2 bg-pink-dark;
+}
 
