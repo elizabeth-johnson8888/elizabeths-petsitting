@@ -17,26 +17,27 @@ function MyServicesSection() {
           <AdditionalServices />
         </div>
       </div>
+
       <div className="flex flex-col gap-4 items-center text-center mt-5 sm:hidden">
         <CustomButton 
           isActive={active === "dropins"}
           onToggle={() => setActive(active === "dropins" ? null : "dropins")}
           buttonLabel="Drop Ins"
-          text="For a drop in, I would come to the house to feed, walk, pet, and play with your animal(s) for at least an hour, or longer if asked with a max of 3 hours. I can do a drop in 3 times a day maximum. Prices for a general drop in start at $25 for one pet and an additional $10 per pet."
+          text="For a drop in visit, I will come to your home to feed, walk, pet, and play with your animal or animals for at least an hour. I’m happy to stay longer if needed, up to a maximum of three hours. I can do up to three drop in visits per day. Prices for a general drop in start at twenty five dollars for one pet, with an additional ten dollars per extra pet."
           />
 
         <CustomButton 
           isActive={active === "housesit"}
           onToggle={() => setActive(active === "housesit" ? null : "housesit")}
           buttonLabel="House Sit"
-          text="For House sitting, I'd stay at your house to ensure your pet(s) is loved the entire day. Additionally, I will take care of any plants and take in the mail if needed. House sitting with one animal is $85 daily and an extra $10 per pet."
+          text="For house sitting, I will stay at your home to make sure your pet gets care and companionship throughout the day. I can also water plants and bring in the mail if needed. The rate for house sitting is eighty five dollars per day for one pet, with an additional ten dollars for each extra pet."
           />
 
         <CustomButton 
           isActive={active === "additional"}
           onToggle={() => setActive(active === "additional" ? null : "additional")}
           buttonLabel="Additional Services"
-          text="If you've hired me to do a drop in, I can take care of your plants as well! Plant watering is an extra $5 per drop in. Also, if you've hired me to do a drop in, I'd be happy to take your mail inside and leave it in a designated spot for you!"
+          text="If you’ve booked me for a drop in visit, I can also take care of your plants for an additional five dollars per visit. I’m also happy to bring in your mail and leave it in a designated spot for you. Just let me know what you need!"
           />
       </div>
       

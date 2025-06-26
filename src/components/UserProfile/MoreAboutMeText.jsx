@@ -17,7 +17,7 @@ function MoreAboutMeText({ isActive, text }) {
       <AnimatePresence>
         {isActive && (
           <motion.div
-            className="flex flex-wrap m-5"
+            className="flex flex-wrap justify-center items-center m-5"
             initial="hidden"
             animate="visible"
             exit="exit"

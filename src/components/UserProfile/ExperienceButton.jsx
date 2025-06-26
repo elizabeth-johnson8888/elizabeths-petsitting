@@ -10,7 +10,7 @@ function ExperienceButton({ isActive, onToggle }) {
       
       <MoreAboutMeText 
         isActive={isActive}
-        text="I am just starting out with my business, but I have pet sat for some friends these past couple months! I realized I love pet sitting and hope to do it some more! I love dogs and cats, which I have experience watching, but I also dont mind learning how to take care of another type of animal to fill your needs! All animals deserve love and care!" 
+        text="I'm just getting started with my pet sitting business. Over the past few months, I've had the joy of caring for pets for friends and I absolutely loved it. I have experience with both dogs and cats, and I'm always open to learning how to care for other animals too. Every pet deserves love, attention, and a safe, happy environment, and I would be honored to provide that for yours!" 
       />
     </div>
   );

@@ -18,7 +18,7 @@ function MoreAboutMeButton({ isActive, onToggle }) {
 
       <MoreAboutMeText 
         isActive={isActive}
-        text="I am a recent graduate from James Madison Unviersity with a BS in Computer Science. My family pet is a little dog named Athena, or Tina for short. She is absolutely adorable and I love taking care of her. In my free time I love listening to music, doing arts and crafts, and hanging out with my friends." 
+        text="I’m a recent graduate from James Madison University with a degree in Computer Science. My family pet is a little dog named Athena, but we all call her Tina. Taking care of her inspired me to start my pet sitting business because I just love animals that much. When I’m not coding or cuddling with Tina, I’m probably listening to music, getting creative with arts and crafts, or hanging out with friends." 
       />
     </motion.div>
   );

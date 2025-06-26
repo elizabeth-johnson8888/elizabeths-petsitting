@@ -5,6 +5,7 @@
   --color-pink-med: oklch(94.8% 0.028 342.258);
   --color-pink-dark: oklch(89.9% 0.061 343.231); 
   --color-pink-xtra-dark: oklch(82.3% 0.12 346.018);
+  --color-pink-black: oklch(0.284 0.049 301.91);
 }
 
 /* @theme base {
@@ -12,6 +13,10 @@
     font-weight: bold;
   }
 } */
+
+h1, h2, h3, p, a, button, label, li {
+  @apply text-pink-black;
+}
 
 .form-input {
   @apply border p-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light;
@@ -46,3 +51,18 @@
   @apply border p-2 border-pink-xtra-dark rounded-4xl border-2 bg-pink-dark;
 }
 
+.border-line-left {
+  @apply h-24 m-5 w-80 relative ;
+  background-image: url('/src/assets/leftpinkpaw.png');
+  background-repeat: repeat-x;
+  background-position: top;
+  background-size: auto 4em;
+}
+
+.border-line-right {
+  @apply h-24 m-5 w-80 relative ;
+  background-image: url('/src/assets/rightpinkpaw.png');
+  background-repeat: repeat-x;
+  background-position: top;
+  background-size: auto 4em;
+}
