@@ -32,22 +32,22 @@ function App() {
 
         <div className='h-screen overflow-y-auto snap-mandatory snap-y'>
           <div className="snap-start h-screen w-screen flex flex-col justify-center items-center">
-            <div className='border-line-left'></div>
+            <div className='border-line-left block sm:hidden'></div>
             <h1 className='text-7xl font-bold text-center pb-8'>Liz's Pet Sitting</h1>
             <UserProfile />
-            <div className='border-line-right top-4'></div>
+            <div className='border-line-right top-4 block sm:hidden'></div>
           </div>
 
           <div className="snap-start h-screen w-screen flex flex-col justify-center items-center">
-            <div className='border-line-left'></div>
+            <div className='border-line-left block sm:hidden'></div>
             <AboutMeSection />
-            <div className='border-line-right top-5'></div>
+            <div className='border-line-right top-5 block sm:hidden'></div>
           </div>
           
           <div className="snap-start h-screen w-screen flex flex-col justify-center items-center">
-            <div className='border-line-left'></div>
+            <div className='border-line-left block sm:hidden'></div>
             <MyServicesSection />
-            <div className='border-line-left top-5'></div>
+            <div className='border-line-right top-5 block sm:hidden'></div>
           </div>
           
           <div className="snap-start h-screen w-screen flex justify-center items-center">
@@ -63,21 +63,21 @@ function App() {
           </div>
           
           <div className="snap-start h-screen w-screen flex flex-col justify-center items-center">
-            <div className='border-line-left'></div>
+            <div className='border-line-left relative top-1 block sm:hidden'></div>
             <ImageCarousel />
-            <div className='border-line-left'></div>
+            <div className='border-line-left relative bottom-2 block sm:hidden'></div>
           </div>
           
           <div className="snap-start h-screen w-screen flex flex-col justify-center items-center">
-            <div className='border-line-left'></div>
+            <div className='border-line-left block sm:hidden'></div>
             <AirtableReviews />
-            <div className='border-line-left top-5'></div>
+            <div className='border-line-left top-5 block sm:hidden'></div>
           </div>
           
           <div className="snap-start h-screen w-screen flex flex-col justify-center items-center">
-            <div className='border-line-left'></div>
+            <div className='border-line-left relative top-4 block sm:hidden'></div>
             <ReviewForm />
-            <div className='border-line-left top-5'></div>
+            <div className='border-line-left relative bottom-1 block sm:hidden'></div>
           </div>
         </div>
       </header>
