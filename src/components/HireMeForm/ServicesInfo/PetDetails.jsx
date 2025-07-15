@@ -10,7 +10,7 @@ function PetDetails({
     <div className="space-y-2">
       <label className="regular-text font-bold mr-4">
         Choose your pet:
-        <select value={pet.type} onChange={(e) => onTypeChange(index, e.target.value)} className="border p-2 mb-3 border-pink-xtra-dark rounded-full border-2 bg-pink-light ml-4">
+        <select value={pet.type} onChange={(e) => onTypeChange(index, e.target.value)} className="border p-2 mb-3 border-pink-xtra-dark rounded-full border-2 bg-pink-light ml-4" required>
           <option value="">-- Select --</option>
           <option value="Dog">Dog</option>
           <option value="Cat">Cat</option>
@@ -28,6 +28,7 @@ function PetDetails({
               value={pet.other}
               onChange={(e) => onOtherTypeChange(index, e.target.value)}
               className="border p-2 mb-2 ml-4 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+              required
             />
           </label>
         </div>
@@ -41,6 +42,7 @@ function PetDetails({
             value={pet.name}
             onChange={(e) => onNameChange(index, e.target.value)}
             className="border p-2 mb-2 ml-4 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+            required
           />
         </label>
       </div>
@@ -53,6 +55,7 @@ function PetDetails({
             value={pet.age}
             onChange={(e) => onAgeChange(index, e.target.value)}
             className="border p-2 mb-2 ml-4 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+            required
           />
         </label>
       </div>

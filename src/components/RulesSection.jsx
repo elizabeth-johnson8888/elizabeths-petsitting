@@ -2,7 +2,12 @@
 function RulesSection() {
   return (
     <div>
-      <h3 className="text-4xl font-bold text-center">Service Terms</h3>
+      <div className="flex justify-center content-center">
+        <div className='paw left-tilt sm:hidden'></div>
+        <h3 className="text-4xl font-bold text-center">Service Terms</h3>
+        <div className='paw right-tilt sm:hidden'></div>
+      </div>
+      
       <div className="hidden sm:block">
         <ul className="m-10 ml-15 sm:ml-25 sm:mr-25 list-disc">
           <li className="mb-2 regular-text">If I need to cancel your pet sitting for any reason, I will refund the $20 booking charge.</li>

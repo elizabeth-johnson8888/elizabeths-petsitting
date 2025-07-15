@@ -68,6 +68,7 @@ function DropInDetails ({ data, setData, unavailableDates, dateLabel, timeLabel,
                 minDate={sixDaysFromNow}
                 maxDate={threeMonthsFromToday}
                 disabledDates={unavailableDates}
+                required
                 // className="border p-2 mb-4 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
                 />
             </div>
@@ -78,9 +79,11 @@ function DropInDetails ({ data, setData, unavailableDates, dateLabel, timeLabel,
                 <input
                     type="number"
                     min="1"
+                    max="3"
                     value={data.visitsPerDay || ''}
                     onChange={handleCountChange}
                     className="border p-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+                    required
                 />
             </div>
 
@@ -94,6 +97,7 @@ function DropInDetails ({ data, setData, unavailableDates, dateLabel, timeLabel,
                         value={time}
                         onChange={(e) => handleTimeChange(index, e.target.value)}
                         className="border p-2 border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+                        required
                     />
                 </div>
             ))}

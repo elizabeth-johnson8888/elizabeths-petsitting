@@ -66,3 +66,19 @@ h1, h2, h3, p, a, button, label, li {
   background-position: top;
   background-size: auto 4em;
 }
+
+.paw {
+  @apply h-10 w-10 relative;
+  background-image: url('/src/assets/pinkpaw.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.left-tilt {
+  @apply rotate-[-15deg] mr-2;
+}
+
+.right-tilt {
+  @apply rotate-[15deg] ml-2;
+}

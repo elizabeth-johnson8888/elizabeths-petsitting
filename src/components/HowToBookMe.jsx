@@ -1,7 +1,14 @@
+import toppaw from './../assets/pinkpaw.png';
+
 function HowToBookMe() {
   return (
     <div>
-      <h3 className="text-4xl font-bold text-center">How to Book Me</h3>
+      <div className='flex justify-center content-center'>
+        <div className='paw left-tilt sm:hidden'></div>
+        <h3 className="text-4xl font-bold text-center">How to Book Me</h3>
+        <div className='paw right-tilt sm:hidden'></div>
+      </div>
+      
       <div className="hidden sm:block">
         <ul className="m-10 ml-15 sm:ml-25 sm:mr-25 list-disc">
           <li className="mb-2 sm:text-lg">To get started, please fill out the brief form on this site with some basic details about your pets and the service you need. After that, I will send you a confirmation email with a more detailed form to gather all the important information I’ll need to care for your pets.</li>

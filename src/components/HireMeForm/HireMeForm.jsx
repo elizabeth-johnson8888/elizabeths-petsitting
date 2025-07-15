@@ -75,6 +75,8 @@ function HireMeForm() {
   ]);
 
   const [step, setStep] = useState(1);
+  const [showForm, setShowForm] = useState(false);
+  const [showTitle, setShowTitle] = useState(true);
   
   const handleServiceCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -120,6 +122,16 @@ function HireMeForm() {
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
 
+  const handleToggleForm = () => {
+    setShowForm(prev => !prev);
+    setShowTitle(prev => !prev);
+  }
+
+  const handleMobileBackTitle = () => {
+    setShowForm(false);
+    setShowTitle(true);
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -136,7 +148,7 @@ function HireMeForm() {
 
   // Fetch busy dates from your backend
   useEffect(() => {
-    fetch('https://petsitting-backend.onrender.com/busy-dates') // Replace with your actual backend URL
+    fetch('https://petsitting-backend.onrender.com/busy-dates')
       .then((res) => res.json())
       .then((data) => {
         const calendarEntries = data.events;
@@ -145,6 +157,18 @@ function HireMeForm() {
         setUnavailableDates(parsedDates);
       })
       .catch((error) => console.error('Error fetching busy dates:', error));
+
+      const handleResize = () => {
+        if (window.innerWidth >= 640) {
+          // Tailwind's `sm` breakpoint is 640px
+          setShowForm(true);
+        } else {
+          setShowForm(false);
+        }
+      };
+
+      // Initial check
+      handleResize();
   }, []);
 
   const handleSubmit = (e) => {
@@ -165,113 +189,126 @@ function HireMeForm() {
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-16 sm:grid sm:grid-cols-[1fr_2fr] sm:grid-rows-1 sm:gap-8 ">
-      <div className='flex flex-col center-items justify-center sm:relative sm:-left-20'>
-        <h2 className="text-4xl font-bold text-center pb-2 sm:pb-8">Want to hire me?</h2>
-        <p className='regular-text text-center sm:pb-8'> Fill out my form!</p>
+      {showTitle && (
+      <div className='flex flex-col items-center justify-center'>
+        <div className='border-line-left relative top-1 block sm:hidden'></div>
+        <div className='flex flex-col center-items justify-center sm:relative sm:-left-20'>
+          <h2 className="text-4xl font-bold text-center pb-2 sm:pb-8">Want to hire me?</h2>
+          <p className='regular-text text-center sm:pb-8 hidden sm:block'> Fill out my form!</p>
+        </div>
+
+        <button className="w-48 button border-pink-xtra-dark rounded-full border-2 mt-5 sm:hidden" onClick={handleToggleForm}>
+          Fill out my form!
+        </button>
+        <div className='border-line-right relative top-1 block sm:hidden'></div>
       </div>
+      )}
 
-      <div className='pl-5 pr-5 sm:p-0'>
-        {/* // get client information */}
-        { step === 1 && (
-          <div>
-            <h3 className="text-2xl font-bold pb-2 text-center">Your Information:</h3>
-            <ClientName value={formData.owner_name} onChange={handleChange} />
-            <PhoneNumber value={formData.phone} onChange={handleChange} />
-            <Email value={formData.email} onChange={handleChange} />
-            <Address value={formData.address} onChange={handleChange} />
-            <div className='flex justify-center'>
-              <button type="button" onClick={handleNext} className="button border-pink-xtra-dark rounded-full border-2">Next</button>
-            </div>
-          </div>
-        )}
-
-        {/* services serction */}
-        { step === 2 && (
-          <div className=''>
-            <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
-            <ServicesSelector selectedServices={formData.services} onChange={handleServiceCheckboxChange} />
-
-            <div className={`${formData.services.length > 1 ? 'h-56 max-w-xl overflow-y-scroll snap-none scrollable-area' : ''} px-2`}>
-            {formData.services.includes('Drop-in') && (
-              <DropInDetails
-                  label="Drop-In"
-                  dateLabel="Drop-in Dates: "
-                  timeLabel="Drop-in Times: "
-                  data={formData.dropInDetails}
-                  setData={(update) => setFormData((prev) => ({ ...prev, dropInDetails: update }))}
-                  unavailableDates={unavailableDates}
-              />
-            )}
-
-            {formData.services.includes('Walk') && (
-              <DropInDetails
-                  label="Walk"
-                  dateLabel="Walk Dates: "
-                  timeLabel="Walk Times: "
-                  data={formData.walkDetails}
-                  setData={(update) => setFormData(prev => ({ ...prev, walkDetails: update }))}
-                  unavailableDates={unavailableDates}
-              />
-            )}
-
-            {formData.services.includes("House-sit") && (
-              <HouseSitDetails
-                label="House-Sit"
-                dateLabel="Houses-sit Dates: "
-                data={formData.houseSitDetails}
-                setData={(update) => setFormData(prev => ({...prev, houseSitDetails: update}))}
-                unavailableDates={unavailableDates}
-              />
-            )}
-            </div>
-
-            <div className="flex justify-between mt-2">
-              <button type="button" onClick={handleBack} className='button border-pink-xtra-dark rounded-full border-2'>Back</button>
-              <button type="button" onClick={handleNext} className='button border-pink-xtra-dark rounded-full border-2'>Next</button>
-            </div>
-          </div>
-        )}
-
-        { step === 3 && (
-          <div>
-            <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
-            <PetFormSection
-              formData={formData}
-              handleChange={handleChange}
-              pets={pets}
-              handlePetTypeChange={handlePetTypeChange}
-              handleOtherTypeChange={handleOtherTypeChange}
-              handlePetNameChange={handlePetNameChange}
-              handlePetAgeChange={handlePetAgeChange}
-            />
-            <div className="flex justify-between mt-2">
-              <button type="button" onClick={handleBack} className='button border-pink-xtra-dark rounded-full border-2'>Back</button>
-              <button type="button" onClick={handleNext} className='button border-pink-xtra-dark rounded-full border-2'>Next</button>
-            </div>
-          </div>
-        )}
-
-        { step === 4 && (    
-          <div>
+      {showForm && ( 
+        <div className='pl-5 pr-5 sm:p-0'>
+          {/* // get client information */}
+          { step === 1 && (
             <div>
-              <h3 className="text-2xl font-bold pb-2 text-center mb-4">Additional Information:</h3>
-              <label className="regular-text font-bold mr-4">Any additional notes I should know?</label>
-              <textarea
-                value={formData.additionalInfo}
-                onChange={(e) => setFormData(prev => ({ ...prev, additionalInfo: e.target.value}))}
-                // rows={5}
-                className="border p-2 mb-4 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+              <h3 className="text-2xl font-bold pb-2 text-center">Your Information:</h3>
+              <ClientName value={formData.owner_name} onChange={handleChange} />
+              <PhoneNumber value={formData.phone} onChange={handleChange} />
+              <Email value={formData.email} onChange={handleChange} />
+              <Address value={formData.address} onChange={handleChange} />
+              <div className='flex justify-between sm:justify-center'>
+                <button type="button" onClick={handleMobileBackTitle} className='button border-pink-xtra-dark rounded-full border-2 sm:hidden'>Back</button>
+                <button type="button" onClick={handleNext} className="button border-pink-xtra-dark rounded-full border-2">Next</button>
+              </div>
+            </div>
+          )}
+
+          {/* services serction */}
+          { step === 2 && (
+            <div className=''>
+              <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
+              <ServicesSelector selectedServices={formData.services} onChange={handleServiceCheckboxChange} />
+
+              <div className={`${formData.services.length > 1 ? 'h-56 max-w-xl overflow-y-scroll snap-none scrollable-area' : ''} px-2`}>
+              {formData.services.includes('Drop-in') && (
+                <DropInDetails
+                    label="Drop-In"
+                    dateLabel="Drop-in Dates: "
+                    timeLabel="Drop-in Times: "
+                    data={formData.dropInDetails}
+                    setData={(update) => setFormData((prev) => ({ ...prev, dropInDetails: update }))}
+                    unavailableDates={unavailableDates}
+                />
+              )}
+
+              {formData.services.includes('Walk') && (
+                <DropInDetails
+                    label="Walk"
+                    dateLabel="Walk Dates: "
+                    timeLabel="Walk Times: "
+                    data={formData.walkDetails}
+                    setData={(update) => setFormData(prev => ({ ...prev, walkDetails: update }))}
+                    unavailableDates={unavailableDates}
+                />
+              )}
+
+              {formData.services.includes("House-sit") && (
+                <HouseSitDetails
+                  label="House-Sit"
+                  dateLabel="Houses-sit Dates: "
+                  data={formData.houseSitDetails}
+                  setData={(update) => setFormData(prev => ({...prev, houseSitDetails: update}))}
+                  unavailableDates={unavailableDates}
+                />
+              )}
+              </div>
+
+              <div className="flex justify-between mt-2">
+                <button type="button" onClick={handleBack} className='button border-pink-xtra-dark rounded-full border-2'>Back</button>
+                <button type="button" onClick={handleNext} className='button border-pink-xtra-dark rounded-full border-2'>Next</button>
+              </div>
+            </div>
+          )}
+
+          { step === 3 && (
+            <div>
+              <h3 className="text-2xl font-bold pb-2 text-center mb-4">Service Details:</h3>
+              <PetFormSection
+                formData={formData}
+                handleChange={handleChange}
+                pets={pets}
+                handlePetTypeChange={handlePetTypeChange}
+                handleOtherTypeChange={handleOtherTypeChange}
+                handlePetNameChange={handlePetNameChange}
+                handlePetAgeChange={handlePetAgeChange}
               />
+              <div className="flex justify-between mt-2">
+                <button type="button" onClick={handleBack} className='button border-pink-xtra-dark rounded-full border-2'>Back</button>
+                <button type="button" onClick={handleNext} className='button border-pink-xtra-dark rounded-full border-2'>Next</button>
+              </div>
             </div>
-            <div className="flex justify-between mt-2">
-              <button type="button" onClick={handleBack} className="button border-pink-xtra-dark rounded-full border-2">Back</button>
-              <button type="submit" className="button border-pink-xtra-dark rounded-full border-2">
-                Submit
-              </button>
+          )}
+
+          { step === 4 && (    
+            <div>
+              <div>
+                <h3 className="text-2xl font-bold pb-2 text-center mb-4">Additional Information:</h3>
+                <label className="regular-text font-bold mr-4">Any additional notes I should know?</label>
+                <textarea
+                  value={formData.additionalInfo}
+                  onChange={(e) => setFormData(prev => ({ ...prev, additionalInfo: e.target.value}))}
+                  // rows={5}
+                  className="border p-2 mb-4 w-full border-pink-xtra-dark rounded-full border-2 bg-pink-light"
+                />
+              </div>
+              <div className="flex justify-between mt-2">
+                <button type="button" onClick={handleBack} className="button border-pink-xtra-dark rounded-full border-2">Back</button>
+                <button type="submit" className="button border-pink-xtra-dark rounded-full border-2">
+                  Submit
+                </button>
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </form>
   );
 }
