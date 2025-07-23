@@ -4,19 +4,6 @@ A sleek and interactive web application built with **React** and **Vite**, desig
 
 ---
 
-## 🚀 Table of Contents
-
-- [Demo](#demo)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Setup & Development](#setup--development)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
 ## 🎬 Demo
 
 A live demo will be added here once hosted.
